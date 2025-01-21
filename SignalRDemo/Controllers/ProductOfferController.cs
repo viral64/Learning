@@ -15,26 +15,7 @@ namespace SignalRDemo.Controllers
         public ProductOfferController(IHubContext<MessageHub, IMessageHubClient> messageHub)
         {
             _messageHub = messageHub;
-        }
-
-        // Send a chat message to all users
-        [HttpPost]
-        [Route("sendMessage")]
-        public async Task<IActionResult> SendMessage([FromBody] string message)
-        {
-            string user = "Admin"; // Replace with dynamic user info if needed
-            await _messageHub.Clients.All.ReceiveMessage(user, message);
-            return Ok("Message sent successfully");
-        }
-
-        // Send a notification to all users
-        [HttpPost]
-        [Route("sendNotification")]
-        public async Task<IActionResult> SendNotification([FromBody] string notification)
-        {
-            await _messageHub.Clients.All.ReceiveNotification(notification);
-            return Ok("Notification sent successfully");
-        }
+        } 
 
         // Get the list of products for auction
         [HttpGet]
